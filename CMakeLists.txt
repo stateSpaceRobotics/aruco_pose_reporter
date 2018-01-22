@@ -8,7 +8,11 @@ project(aruco_pose_reporter)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  ar_sys
+  roscpp
+  rospy
+  std_msgs
+  geometry_msgs
+  tf
   tf2
   tf2_msgs
   tf2_ros
@@ -136,6 +140,9 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/aruco_pose_reporter_node.cpp)
 
+add_executable(aruco_pose_reporter src/aruco_pose_reporter_node.cpp)
+target_link_libraries(aruco_pose_reporter ${catkin_LIBRARIES} )
+#add_dependencies(block_manipulation turtlebot_arm_block_manipulation_gencpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
